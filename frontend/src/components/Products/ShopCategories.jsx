@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Typography, Chip, Stack, TextField } from "@mui/material";
 
-import img1 from "../../assets/images/products/f1.jpg";
+import Pmg1 from "../../assets/images/products/f1.jpg";
 import img2 from "../../assets/images/products/f2.jpg";
 import img3 from "../../assets/images/products/f3.jpg";
 import img4 from "../../assets/images/products/f4.jpg";
@@ -14,7 +14,7 @@ import img8 from "../../assets/images/products/n1.jpg";
 const productsData = [
   {
     id: 1,
-    image: img1,
+    image: Pmg1,
     brand: "Adidas",
     name: "Astronaut Tee",
     price: 559,
