@@ -1,0 +1,86 @@
+#hero {
+  background-image: url('../../assets/images/hero4.png');
+  width: 100%;
+  height: 120vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 80px;
+  color: #111;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+#hero h4 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+#hero h2 {
+  font-size: 48px;
+  margin: 0;
+}
+
+#hero h1 {
+  color: #088178;
+  font-size: 48px;
+  margin: 10px 0;
+}
+
+#hero p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+#hero button {
+  background-color: transparent;
+  width: 260px;
+  height: 60px;
+  border: 0;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  color: #088178;
+  padding: 14px 65px 14px 65px;
+}
+
+#hero button:hover {
+  filter: brightness(90%);
+}
+
+/* ========== RESPONSIVE DESIGN FOR MOBILE ========== */
+@media (max-width: 768px) {
+  #hero {
+    padding: 0 30px;
+    align-items: left;
+    text-align: center;
+    height: 60vh;
+    width: 100%;
+
+  }
+
+  #hero h4 {
+    font-size: 18px;
+  }
+
+  #hero h2 {
+    font-size: 32px;
+  }
+
+  #hero h1 {
+    font-size: 32px;
+  }
+
+  #hero p {
+    font-size: 16px;
+  }
+
+  #hero button {
+    width: 180px;
+    height: 50px;
+    font-size: 16px;
+    padding: 10px 30px;
+  }
+}
