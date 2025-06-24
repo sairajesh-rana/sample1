@@ -2,24 +2,24 @@ import React, { useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Box, Typography, Button, IconButton, Grid } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import img1 from '../../assets/images/products/f1.jpg';
-import img2 from '../../assets/images/products/f2.jpg';
-import img3 from '../../assets/images/products/f3.jpg';
-import img4 from '../../assets/images/products/f4.jpg';
-import img5 from '../../assets/images/products/f5.jpg';
-import img6 from '../../assets/images/products/f6.jpg';
-import img7 from '../../assets/images/products/f7.jpg';
-import img8 from '../../assets/images/products/n1.jpg';
+import Pmg1 from '../../assets/images/products/f1.jpg';
+import Pmg2 from '../../assets/images/products/f2.jpg';
+import Pmg3 from '../../assets/images/products/f3.jpg';
+import Pmg4 from '../../assets/images/products/f4.jpg';
+import Pmg5 from '../../assets/images/products/f5.jpg';
+import Pmg6 from '../../assets/images/products/f6.jpg';
+import Pmg7 from '../../assets/images/products/f7.jpg';
+import Pmg8 from '../../assets/images/products/n1.jpg';
 
 const productsData = [
-  { id: 1, image: img1, brand: 'Adidas', name: 'Astronaut Tee', price: 559, rating: 5, description: 'Cool astronaut-themed tee.' },
-  { id: 2, image: img2, brand: 'Nike', name: 'Explorer Tee', price: 699, rating: 4, description: 'Explore in style.' },
-  { id: 3, image: img3, brand: 'Puma', name: 'Galaxy Shirt', price: 399, rating: 4, description: 'Galaxy vibes shirt.' },
-  { id: 4, image: img4, brand: 'Reebok', name: 'Comet Hoodie', price: 599, rating: 5, description: 'Warm comet hoodie.' },
-  { id: 5, image: img5, brand: 'Adidas', name: 'Lunar Joggers', price: 399, rating: 3, description: 'Comfortable lunar joggers.' },
-  { id: 6, image: img6, brand: 'Puma', name: 'Mars Jacket', price: 499, rating: 4, description: 'Mars-inspired jacket.' },
-  { id: 7, image: img7, brand: 'Reebok', name: 'Pant', price: 299, rating: 5, description: 'Stylish pant.' },
-  { id: 8, image: img8, brand: 'Nike', name: 'Shirt', price: 199, rating: 4, description: 'Basic everyday shirt.' }
+  { id: 1, image: Pmg1, brand: 'Adidas', name: 'Astronaut Tee', price: 559, rating: 5, description: 'Cool astronaut-themed tee.' },
+  { id: 2, image: Pmg2, brand: 'Nike', name: 'Explorer Tee', price: 699, rating: 4, description: 'Explore in style.' },
+  { id: 3, image: Pmg3, brand: 'Puma', name: 'Galaxy Shirt', price: 399, rating: 4, description: 'Galaxy vibes shirt.' },
+  { id: 4, image: Pmg4, brand: 'Reebok', name: 'Comet Hoodie', price: 599, rating: 5, description: 'Warm comet hoodie.' },
+  { id: 5, image: Pmg5, brand: 'Adidas', name: 'Lunar Joggers', price: 399, rating: 3, description: 'Comfortable lunar joggers.' },
+  { id: 6, image: Pmg6, brand: 'Puma', name: 'Mars Jacket', price: 499, rating: 4, description: 'Mars-inspired jacket.' },
+  { id: 7, image: Pmg7, brand: 'Reebok', name: 'Pant', price: 299, rating: 5, description: 'Stylish pant.' },
+  { id: 8, image: Pmg8, brand: 'Nike', name: 'Shirt', price: 199, rating: 4, description: 'Basic everyday shirt.' }
 ];
 
 const ProductDetail = ({ onAddToCart, wishlistItems, onToggleWishlist }) => {
