@@ -142,8 +142,7 @@ const Banners = () => {
       <div className="big-banners" style={bigBannerContainer}>
         <div className="big-banners-1" style={videoBanner}>
           <video autoPlay muted loop style={bannerVideo}>
-            <source src={Video1} type="video/mp4" />
-            Your browser does not support the video tag.
+            <source src="/videos/banner1.mp4" type="video/mp4" />
           </video>
           <div className="banner-content" style={bannerContent}>
             <h4>crazy deals</h4>
@@ -169,8 +168,7 @@ const Banners = () => {
 
         <div className="big-banners-2" style={videoBanner}>
           <video autoPlay muted loop style={bannerVideo}>
-            <source src={Pideo2} type="video/mp4" />
-            Your browser does not support the video tag.
+            <source src="/videos/banner2.mp4" type="video/mp4"/>
           </video>
           <div className="banner-content" style={bannerContent}>
             <h4>spring/summer</h4>
