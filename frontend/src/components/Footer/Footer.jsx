@@ -1,8 +1,8 @@
 import React from 'react';
 
-const appImg = '/images/footer/app.jpg';
-const playImg = '/images/footer/play.jpg';
-const payImg = '/images/footer/pay.png';
+const appImg = '/images/pay/app.jpg';
+const playImg = '/images/pay/play.jpg';
+const payImg = '/images/pay/pay.png';
 const logo = '/images/mainlogo.png';
 
 const Footer = () => {
