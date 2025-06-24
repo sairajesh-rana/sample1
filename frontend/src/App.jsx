@@ -16,7 +16,6 @@ import Footer from "./components/Footer/Footer";
 import CombinedAccountFlow from "./components/Form/Contact";
 import Banners from "./components/Poster/Banner";
 import OffBanner1 from "./components/Poster/Poster";
-import Newsletter from "./components/Form/form";
 import ProductDetail from "./components/Products/ProductDetail"; 
 import ProfileView from "./components/Form/Account";
 
@@ -25,7 +24,7 @@ const AppContent = () => {
 
   const [cartItems, setCartItems] = useState([]);
   const [wishlistItems, setWishlistItems] = useState([]);
-  const [accountData, setAccountData] = useState(null);
+  
 
   const handleAddToCart = (product) => {
     setCartItems((prev) => {
