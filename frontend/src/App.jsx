@@ -149,7 +149,6 @@ const AppContent = () => {
           path="/profile"
           element={
             <ProfileView
-              accountData={accountData}
               cartCount={cartItems.length}
               wishlistCount={wishlistItems.length}
             />
@@ -164,7 +163,6 @@ const AppContent = () => {
         <>
           <OffBanner1 />
           <Banners />
-          <Newsletter />
           <Footer />
         </>
       )}

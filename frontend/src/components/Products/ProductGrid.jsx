@@ -2,25 +2,18 @@ import React, { useState } from 'react';
 import { Button, Dialog, DialogTitle, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom'; 
-import img1 from '../../assets/images/products/f1.jpg';
-import img2 from '../../assets/images/products/f2.jpg';
-import img3 from '../../assets/images/products/f3.jpg';
-import img4 from '../../assets/images/products/f4.jpg';
-import img5 from '../../assets/images/products/f5.jpg';
-import img6 from '../../assets/images/products/f6.jpg';
-import img7 from '../../assets/images/products/f7.jpg';
-import img8 from '../../assets/images/products/n1.jpg';
 
 const productsData = [
-  { id: 1, image: img1, brand: 'Adidas', name: 'Astronaut Tee', price: 559, rating: 5 },
-  { id: 2, image: img2, brand: 'Nike', name: 'Explorer Tee', price: 699, rating: 4 },
-  { id: 3, image: img3, brand: 'Puma', name: 'Galaxy Shirt', price: 399, rating: 4 },
-  { id: 4, image: img4, brand: 'Reebok', name: 'Comet Hoodie', price: 599, rating: 5 },
-  { id: 5, image: img5, brand: 'Adidas', name: 'Lunar Joggers', price: 399, rating: 3 },
-  { id: 6, image: img6, brand: 'Puma', name: 'Mars Jacket', price: 499, rating: 4 },
-  { id: 7, image: img7, brand: 'Reebok', name: 'Pant', price: 299, rating: 5 },
-  { id: 8, image: img8, brand: 'Nike', name: 'Shirt', price: 199, rating: 4 }
+  { id: 1, image: '/images/products/f1.jpg', brand: 'Adidas', name: 'Astronaut Tee', price: 559, rating: 5 },
+  { id: 2, image: '/images/products/f2.jpg', brand: 'Nike', name: 'Explorer Tee', price: 699, rating: 4 },
+  { id: 3, image: '/images/products/f3.jpg', brand: 'Puma', name: 'Galaxy Shirt', price: 399, rating: 4 },
+  { id: 4, image: '/images/products/f4.jpg', brand: 'Reebok', name: 'Comet Hoodie', price: 599, rating: 5 },
+  { id: 5, image: '/images/products/f5.jpg', brand: 'Adidas', name: 'Lunar Joggers', price: 399, rating: 3 },
+  { id: 6, image: '/images/products/f6.jpg', brand: 'Puma', name: 'Mars Jacket', price: 499, rating: 4 },
+  { id: 7, image: '/images/products/f7.jpg', brand: 'Reebok', name: 'Pant', price: 299, rating: 5 },
+  { id: 8, image: '/images/products/n1.jpg', brand: 'Nike', name: 'Shirt', price: 199, rating: 4 }
 ];
+
 
 const ProductGrid = ({ onAddToCart, onToggleWishlist, wishlistItems }) => {
   const [visibleCount] = useState(4); 
