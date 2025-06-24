@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import Video1 from '../../assets/images/banner/videos/banner1.mp4';
-import Video2 from '../../assets/images/banner/videos/banner2.mp4';
+import Pideo2 from '../../assets/images/banner/videos/banner2.mp4';
 import bannerSmall1 from '../../assets/images/banner/b7.jpg';
 import bannerSmall2 from '../../assets/images/banner/b4.jpg';
 import bannerSmall3 from '../../assets/images/banner/b18.jpg';
@@ -169,7 +169,7 @@ const Banners = () => {
 
         <div className="big-banners-2" style={videoBanner}>
           <video autoPlay muted loop style={bannerVideo}>
-            <source src={Video2} type="video/mp4" />
+            <source src={Pideo2} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <div className="banner-content" style={bannerContent}>
