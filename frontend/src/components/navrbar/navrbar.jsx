@@ -4,7 +4,6 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Badge } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
-import mainlogo from '../../assets/Images/mainlogo.png';
 
 const Header = ({ cartCount = 0, wishlistCount = 0 }) => {
   const location = useLocation();
@@ -61,19 +60,6 @@ const Header = ({ cartCount = 0, wishlistCount = 0 }) => {
         .mobile-nav-link:hover {
           color: #088178;
         }
-        .mobile-nav-link .MuiBadge-badge {
-          font-weight: 700;
-          font-size: 11px;
-          min-width: 16px;
-          height: 16px;
-          top: 4px;
-          right: -10px;
-          padding: 0 4px;
-          border-radius: 8px;
-          background-color: #088178;
-          color: white;
-          box-shadow: 0 0 3px rgba(0,0,0,0.15);
-        }
 
         .navbar-brand img {
           object-fit: contain;
@@ -100,7 +86,7 @@ const Header = ({ cartCount = 0, wishlistCount = 0 }) => {
         <nav className="navbar navbar-expand-lg px-4 py-2">
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
-              <img src={mainlogo} width="140" height="40" alt="Main Company Logo" />
+              <img src="/images/mainlogo.png" width="140" height="40" alt="Company Logo" />
             </Link>
 
             <button
@@ -126,6 +112,7 @@ const Header = ({ cartCount = 0, wishlistCount = 0 }) => {
                     <Link
                       className={`nav-link${location.pathname === to ? ' active' : ''}`}
                       to={to}
+                      aria-label={label}
                     >
                       {label}
                     </Link>
@@ -139,10 +126,7 @@ const Header = ({ cartCount = 0, wishlistCount = 0 }) => {
                     aria-label="Wishlist"
                   >
                     <Badge badgeContent={wishlistCount} color="secondary">
-                      <i
-                        className="fa fa-heart fa-lg"
-                        style={{ color: wishlistCount > 0 ? '#e53935' : 'inherit' }}
-                      ></i>
+                      <i className="fa fa-heart fa-lg" style={{ color: wishlistCount > 0 ? '#e53935' : 'inherit' }}></i>
                     </Badge>
                   </Link>
                 </li>
@@ -195,6 +179,7 @@ const Header = ({ cartCount = 0, wishlistCount = 0 }) => {
               key={to}
               to={to}
               className={`text-decoration-none mobile-nav-link${location.pathname === to ? ' active' : ''}`}
+              aria-label={label}
               aria-current={location.pathname === to ? 'page' : undefined}
             >
               <Badge

@@ -1,16 +1,12 @@
 import React from 'react';
 import { Button } from '@mui/material';
-import Video1 from '../../assets/images/banner/videos/banner1.mp4';
-import Pideo2 from '../../assets/images/banner/videos/banner2.mp4';
-import bannerSmall1 from '../../assets/images/banner/b7.jpg';
-import bannerSmall2 from '../../assets/images/banner/b4.jpg';
-import bannerSmall3 from '../../assets/images/banner/b18.jpg';
+
+const bannerSmall1 = '/images/banner/b7.jpg';
+const bannerSmall2 = '/images/banner/b4.jpg';
+const bannerSmall3 = '/images/banner/b18.jpg';
 
 const Banners = () => {
-  const sectionStyle = {
-    margin: '0 20px',
-  };
-
+  const sectionStyle = { margin: '0 20px' };
   const bigBannerContainer = {
     display: 'flex',
     alignItems: 'center',
@@ -53,7 +49,7 @@ const Banners = () => {
     textAlign: 'left',
     height: '100%',
     width: '100%',
-    textShadow: '0 2px 8px rgba(0,0,0,0.5)', // add shadow to improve readability
+    textShadow: '0 2px 8px rgba(0,0,0,0.5)',
   };
 
   const smallBannersContainer = {
@@ -91,7 +87,7 @@ const Banners = () => {
   };
 
   const h5Style = {
-    color: '#FFD700', // slightly brighter on mobile
+    color: '#FFD700',
     fontSize: '14px',
     fontWeight: '500',
   };
@@ -99,38 +95,30 @@ const Banners = () => {
   return (
     <section id="banners" className="section-p1" style={sectionStyle}>
       <style>{`
-        /* Mobile optimizations */
         @media (max-width: 576px) {
           #banners {
             margin: 0 10px !important;
           }
-
           .big-banners-1, .big-banners-2 {
             min-width: 100% !important;
             height: 220px !important;
           }
-
           .banner-content {
             padding: 15px !important;
           }
-
           .banner-content h2 {
             font-size: 1.2rem !important;
           }
-
           .banner-content h4 {
             font-size: 0.9rem !important;
           }
-
           .banner-content span {
             font-size: 0.8rem !important;
           }
-
           .MuiButton-outlined {
             font-size: 0.75rem !important;
             padding: 6px 12px !important;
           }
-
           .small-banners-1, .small-banners-2, .small-banners-3 {
             min-width: 100% !important;
             height: 150px !important;
@@ -168,7 +156,7 @@ const Banners = () => {
 
         <div className="big-banners-2" style={videoBanner}>
           <video autoPlay muted loop style={bannerVideo}>
-            <source src="/videos/banner2.mp4" type="video/mp4"/>
+            <source src="/videos/banner2.mp4" type="video/mp4" />
           </video>
           <div className="banner-content" style={bannerContent}>
             <h4>spring/summer</h4>

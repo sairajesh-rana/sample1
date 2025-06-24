@@ -1,8 +1,9 @@
 import React from 'react';
-import logo from '../../assets/Images/mainlogo.png';
-import appImg from '../Footer/app.jpg';
-import playImg from '../Footer/play.jpg';
-import payImg from '../Footer/pay.png';
+
+const appImg = '/images/footer/app.jpg';
+const playImg = '/images/footer/play.jpg';
+const payImg = '/images/footer/pay.png';
+const logo = '/images/mainlogo.png';
 
 const Footer = () => {
   const footerStyle = {
@@ -27,7 +28,6 @@ const Footer = () => {
 
   return (
     <footer>
-      {/* Inline CSS for hover underline */}
       <style>
         {`
           .underline-hover {
@@ -60,6 +60,7 @@ const Footer = () => {
       </style>
 
       <div id="footer" style={footerStyle}>
+        {/* Contact Section */}
         <div className="contact">
           <a href="/">
             <img
@@ -80,14 +81,15 @@ const Footer = () => {
           <h3>Follow Us</h3>
           <br />
           <div className="socials">
-            <a href="#" style={textStyle}><i className="fa-brands fa-facebook-square"></i></a>{' '}
-            <a href="#" style={textStyle}><i className="fa-brands fa-youtube"></i></a>{' '}
-            <a href="#" style={textStyle}><i className="fa-brands fa-telegram"></i></a>{' '}
-            <a href="#" style={textStyle}><i className="fa-brands fa-instagram"></i></a>{' '}
-            <a href="#" style={textStyle}><i className="fa-brands fa-twitter"></i></a>
+            {['facebook-square', 'youtube', 'telegram', 'instagram', 'twitter'].map((platform, idx) => (
+              <a key={idx} href="#" style={textStyle}>
+                <i className={`fa-brands fa-${platform}`} style={{ marginRight: '8px' }}></i>
+              </a>
+            ))}
           </div>
         </div>
 
+        {/* About Section */}
         <div className="about">
           <h3>About</h3>
           <br />
@@ -96,6 +98,7 @@ const Footer = () => {
           ))}
         </div>
 
+        {/* My Account Section */}
         <div className="myaccount">
           <h3>My Account</h3>
           <br />
@@ -104,6 +107,7 @@ const Footer = () => {
           ))}
         </div>
 
+        {/* Install App Section */}
         <div className="install">
           <h3>Install App</h3>
           <br />

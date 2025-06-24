@@ -2,19 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Typography, Chip, Stack, TextField } from "@mui/material";
 
-import Pmg1 from "../../assets/images/products/f1.jpg";
-import img2 from "../../assets/images/products/f2.jpg";
-import img3 from "../../assets/images/products/f3.jpg";
-import img4 from "../../assets/images/products/f4.jpg";
-import img5 from "../../assets/images/products/f5.jpg";
-import img6 from "../../assets/images/products/f6.jpg";
-import img7 from "../../assets/images/products/f7.jpg";
-import img8 from "../../assets/images/products/n1.jpg";
-
 const productsData = [
   {
     id: 1,
-    image: Pmg1,
+    image: "/images/products/f1.jpg",
     brand: "Adidas",
     name: "Astronaut Tee",
     price: 559,
@@ -25,7 +16,7 @@ const productsData = [
   },
   {
     id: 2,
-    image: img2,
+    image: "/images/products/f2.jpg",
     brand: "Nike",
     name: "Explorer Tee",
     price: 699,
@@ -36,7 +27,7 @@ const productsData = [
   },
   {
     id: 3,
-    image: img3,
+    image: "/images/products/f3.jpg",
     brand: "Puma",
     name: "Galaxy Shirt",
     price: 399,
@@ -47,7 +38,7 @@ const productsData = [
   },
   {
     id: 4,
-    image: img4,
+    image: "/images/products/f4.jpg",
     brand: "Reebok",
     name: "Comet Hoodie",
     price: 599,
@@ -58,7 +49,7 @@ const productsData = [
   },
   {
     id: 5,
-    image: img5,
+    image: "/images/products/f5.jpg",
     brand: "Adidas",
     name: "Lunar Joggers",
     price: 399,
@@ -69,7 +60,7 @@ const productsData = [
   },
   {
     id: 6,
-    image: img6,
+    image: "/images/products/f6.jpg",
     brand: "Puma",
     name: "Mars Jacket",
     price: 499,
@@ -80,7 +71,7 @@ const productsData = [
   },
   {
     id: 7,
-    image: img7,
+    image: "/images/products/f7.jpg",
     brand: "Reebok",
     name: "Pant",
     price: 299,
@@ -91,7 +82,7 @@ const productsData = [
   },
   {
     id: 8,
-    image: img8,
+    image: "/images/products/n1.jpg",
     brand: "Nike",
     name: "Shirt",
     price: 199,
@@ -105,6 +96,7 @@ const productsData = [
 const ShopCategories = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
+
   const filteredProducts = productsData.filter(
     (product) =>
       product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -112,16 +104,7 @@ const ShopCategories = () => {
   );
 
   return (
-    <Box
-      sx={{
-        p: {
-          xs: 6,
-          sm: 8,
-          md: 10,
-        },
-      }}
-    >
-      {/* Search Bar */}
+    <Box sx={{ p: { xs: 6, sm: 8, md: 10 } }}>
       <Box sx={{ mb: 2 }}>
         <TextField
           fullWidth
@@ -132,7 +115,6 @@ const ShopCategories = () => {
         />
       </Box>
 
-      {/* Products Grid */}
       <Box
         sx={{
           display: "grid",
@@ -166,6 +148,7 @@ const ShopCategories = () => {
               onKeyDown={(e) =>
                 e.key === "Enter" && navigate(`/product/${product.id}`)
               }
+              aria-label={`View ${product.name} details`}
             >
               <Box
                 component="img"
@@ -201,22 +184,13 @@ const ShopCategories = () => {
               </Typography>
               <Typography
                 variant="subtitle1"
-                sx={{
-                  color: "#088178",
-                  fontWeight: "bold",
-                  mb: 1,
-                }}
+                sx={{ color: "#088178", fontWeight: "bold", mb: 1 }}
               >
                 ₹{product.price}
               </Typography>
               <Stack direction="row" spacing={1} sx={{ mb: 1 }}>
                 {product.sizes.map((size) => (
-                  <Chip
-                    key={size}
-                    label={size}
-                    size="small"
-                    variant="outlined"
-                  />
+                  <Chip key={size} label={size} size="small" variant="outlined" />
                 ))}
               </Stack>
               <Stack direction="row" spacing={1}>

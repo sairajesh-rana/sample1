@@ -1,11 +1,13 @@
 import React from 'react';
 import { Button } from '@mui/material';
-import bannerImage from '../../assets/Images/banner/b2.jpg';
+
+const bannerImage = '/images/banner/b2.jpg';
 
 const OffBanner1 = () => {
   const sectionStyle = {
     backgroundImage: `url(${bannerImage})`,
     backgroundSize: 'cover',
+    backgroundPosition: 'center',
     width: '100%',
     height: '40vh',
     display: 'flex',
@@ -13,6 +15,7 @@ const OffBanner1 = () => {
     justifyContent: 'center',
     flexDirection: 'column',
   };
+
   const h4Style = {
     color: '#eaebf0',
   };
@@ -20,6 +23,7 @@ const OffBanner1 = () => {
   const h2Style = {
     color: '#eaebf0',
     padding: '20px 0',
+    textAlign: 'center',
   };
 
   return (
@@ -29,14 +33,14 @@ const OffBanner1 = () => {
       <Button
         variant="text"
         sx={{
-            fontFamily:"sans-serif",
+          fontFamily: 'sans-serif',
           background: '#088178',
-          color:"white",
+          color: 'white',
           textTransform: 'none',
           fontSize: '16px',
+          fontWeight: 'bold',
           position: 'relative',
           overflow: 'hidden',
-          fontWeight:"bold",
           '& span': {
             position: 'relative',
             zIndex: 10000,
@@ -54,7 +58,7 @@ const OffBanner1 = () => {
           '&:hover::after': {
             width: '100%',
           },
-        } }
+        }}
       >
         <span>Explore More</span>
       </Button>

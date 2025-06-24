@@ -2,24 +2,16 @@ import React, { useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Box, Typography, Button, IconButton, Grid } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import Pmg1 from '../../assets/images/products/f1.jpg';
-import Pmg2 from '../../assets/images/products/f2.jpg';
-import Pmg3 from '../../assets/images/products/f3.jpg';
-import Pmg4 from '../../assets/images/products/f4.jpg';
-import Pmg5 from '../../assets/images/products/f5.jpg';
-import Pmg6 from '../../assets/images/products/f6.jpg';
-import Pmg7 from '../../assets/images/products/f7.jpg';
-import Pmg8 from '../../assets/images/products/n1.jpg';
 
 const productsData = [
-  { id: 1, image: Pmg1, brand: 'Adidas', name: 'Astronaut Tee', price: 559, rating: 5, description: 'Cool astronaut-themed tee.' },
-  { id: 2, image: Pmg2, brand: 'Nike', name: 'Explorer Tee', price: 699, rating: 4, description: 'Explore in style.' },
-  { id: 3, image: Pmg3, brand: 'Puma', name: 'Galaxy Shirt', price: 399, rating: 4, description: 'Galaxy vibes shirt.' },
-  { id: 4, image: Pmg4, brand: 'Reebok', name: 'Comet Hoodie', price: 599, rating: 5, description: 'Warm comet hoodie.' },
-  { id: 5, image: Pmg5, brand: 'Adidas', name: 'Lunar Joggers', price: 399, rating: 3, description: 'Comfortable lunar joggers.' },
-  { id: 6, image: Pmg6, brand: 'Puma', name: 'Mars Jacket', price: 499, rating: 4, description: 'Mars-inspired jacket.' },
-  { id: 7, image: Pmg7, brand: 'Reebok', name: 'Pant', price: 299, rating: 5, description: 'Stylish pant.' },
-  { id: 8, image: Pmg8, brand: 'Nike', name: 'Shirt', price: 199, rating: 4, description: 'Basic everyday shirt.' }
+  { id: 1, image: '/images/products/f1.jpg', brand: 'Adidas', name: 'Astronaut Tee', price: 559, rating: 5, description: 'Cool astronaut-themed tee.' },
+  { id: 2, image: '/images/products/f2.jpg', brand: 'Nike', name: 'Explorer Tee', price: 699, rating: 4, description: 'Explore in style.' },
+  { id: 3, image: '/images/products/f3.jpg', brand: 'Puma', name: 'Galaxy Shirt', price: 399, rating: 4, description: 'Galaxy vibes shirt.' },
+  { id: 4, image: '/images/products/f4.jpg', brand: 'Reebok', name: 'Comet Hoodie', price: 599, rating: 5, description: 'Warm comet hoodie.' },
+  { id: 5, image: '/images/products/f5.jpg', brand: 'Adidas', name: 'Lunar Joggers', price: 399, rating: 3, description: 'Comfortable lunar joggers.' },
+  { id: 6, image: '/images/products/f6.jpg', brand: 'Puma', name: 'Mars Jacket', price: 499, rating: 4, description: 'Mars-inspired jacket.' },
+  { id: 7, image: '/images/products/f7.jpg', brand: 'Reebok', name: 'Pant', price: 299, rating: 5, description: 'Stylish pant.' },
+  { id: 8, image: '/images/products/n1.jpg', brand: 'Nike', name: 'Shirt', price: 199, rating: 4, description: 'Basic everyday shirt.' }
 ];
 
 const ProductDetail = ({ onAddToCart, wishlistItems, onToggleWishlist }) => {
@@ -31,7 +23,6 @@ const ProductDetail = ({ onAddToCart, wishlistItems, onToggleWishlist }) => {
   }, [id]);
 
   const product = productsData.find((p) => p.id === parseInt(id));
-
   if (!product) {
     return (
       <Box sx={{ p: 4, textAlign: 'center' }}>
@@ -41,30 +32,15 @@ const ProductDetail = ({ onAddToCart, wishlistItems, onToggleWishlist }) => {
     );
   }
 
-  const isWishlisted = wishlistItems.some((item) => item.id === product.id);
+  const isWishlisted = wishlistItems?.some((item) => item.id === product.id);
   const similarProducts = productsData.filter((p) => p.id !== product.id);
 
   return (
-    <Box
-      sx={{
-        width: '100%',
-        minHeight: '100vh',
-        bgcolor: '#f5f5f5',
-        px: { xs: 1, sm: 4, md: 8 },
-        py: { xs: 3, md: 6 },
-        boxSizing: 'border-box',
-      }}
-    >
-      <IconButton
-        onClick={() => navigate(-1)}
-        sx={{ mb: { xs: 2, md: 4 }, color: '#088178' }}
-        aria-label="go back"
-        size="large"
-      >
+    <Box sx={{ width: '100%', minHeight: '100vh', bgcolor: '#f5f5f5', px: { xs: 1, sm: 4, md: 8 }, py: { xs: 3, md: 6 } }}>
+      <IconButton onClick={() => navigate(-1)} sx={{ mb: { xs: 2, md: 4 }, color: '#088178' }}>
         <ArrowBackIcon fontSize="inherit" />
       </IconButton>
 
-      {/* Product Box */}
       <Box
         sx={{
           display: 'flex',
@@ -77,7 +53,6 @@ const ProductDetail = ({ onAddToCart, wishlistItems, onToggleWishlist }) => {
           alignItems: 'center',
         }}
       >
-        {/* Product Image */}
         <Box
           component="img"
           src={product.image}
@@ -91,75 +66,28 @@ const ProductDetail = ({ onAddToCart, wishlistItems, onToggleWishlist }) => {
           }}
         />
 
-        {/* Product Info */}
         <Box sx={{ flex: 1 }}>
-          <Typography
-            variant="h4"
-            sx={{
-              mb: 2,
-              fontWeight: '700',
-              fontSize: { xs: '1.8rem', md: '2.5rem' },
-              color: '#088178',
-            }}
-          >
+          <Typography variant="h4" sx={{ mb: 2, fontWeight: '700', color: '#088178' }}>
             {product.name}
           </Typography>
-
-          <Typography
-            sx={{
-              mb: 1,
-              color: 'text.secondary',
-              fontSize: { xs: '1rem', md: '1.2rem' },
-            }}
-          >
+          <Typography sx={{ mb: 1, color: 'text.secondary' }}>
             Brand: <strong>{product.brand}</strong>
           </Typography>
-
           <Box sx={{ mb: 1 }}>
             {Array(product.rating)
               .fill()
               .map((_, i) => (
-                <i
-                  key={i}
-                  className="fa-solid fa-star"
-                  style={{ color: '#e6ae2c', marginRight: 4, fontSize: '1.1rem' }}
-                  aria-label="star"
-                ></i>
+                <i key={i} className="fa-solid fa-star" style={{ color: '#e6ae2c', marginRight: 4 }} />
               ))}
           </Box>
-
-          <Typography
-            variant="h5"
-            sx={{
-              mb: 3,
-              color: '#088178',
-              fontWeight: '700',
-              fontSize: { xs: '1.5rem', md: '2rem' },
-            }}
-          >
+          <Typography variant="h5" sx={{ mb: 3, color: '#088178', fontWeight: '700' }}>
             ₹{product.price}
           </Typography>
-
-          <Typography
-            variant="body1"
-            sx={{
-              mb: 4,
-              lineHeight: 1.6,
-              fontSize: { xs: '0.9rem', md: '1.1rem' },
-              color: 'text.primary',
-            }}
-          >
+          <Typography sx={{ mb: 4, lineHeight: 1.6, color: 'text.primary' }}>
             {product.description}
           </Typography>
 
-          {/* Buttons */}
-          <Box
-            sx={{
-              display: 'flex',
-              gap: 2,
-              flexWrap: 'wrap',
-            }}
-          >
+          <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
             <Button
               variant="contained"
               sx={{
@@ -168,14 +96,11 @@ const ProductDetail = ({ onAddToCart, wishlistItems, onToggleWishlist }) => {
                 px: 3,
                 py: 1.5,
                 fontWeight: '600',
-                fontSize: { xs: '0.9rem', md: '1rem' },
                 '&:hover': { bgcolor: '#0b9a8a' },
-                boxShadow: 'none',
-                flexGrow: { xs: 1, md: 'unset' },
               }}
               onClick={() => onAddToCart(product)}
             >
-              <i className="fa-solid fa-cart-shopping" style={{ marginRight: 8 }}></i>
+              <i className="fa-solid fa-cart-shopping" style={{ marginRight: 8 }} />
               Add to Cart
             </Button>
 
@@ -187,20 +112,15 @@ const ProductDetail = ({ onAddToCart, wishlistItems, onToggleWishlist }) => {
                 px: 3,
                 py: 1.5,
                 fontWeight: '600',
-                fontSize: { xs: '0.9rem', md: '1rem' },
                 '&:hover': {
                   bgcolor: '#e6f2f1',
                   borderColor: '#0b9a8a',
                   color: isWishlisted ? '#b92d3e' : '#0b9a8a',
                 },
-                flexGrow: { xs: 1, md: 'unset' },
               }}
               onClick={() => onToggleWishlist(product)}
             >
-              <i
-                className={`fa${isWishlisted ? 's' : 'r'} fa-heart`}
-                style={{ marginRight: 8 }}
-              ></i>
+              <i className={`fa${isWishlisted ? 's' : 'r'} fa-heart`} style={{ marginRight: 8 }} />
               {isWishlisted ? 'Wishlisted' : 'Add to Wishlist'}
             </Button>
           </Box>
@@ -209,24 +129,14 @@ const ProductDetail = ({ onAddToCart, wishlistItems, onToggleWishlist }) => {
 
       {/* Similar Products */}
       {similarProducts.length > 0 && (
-        <Box sx={{ mt: { xs: 6, md: 10 }, boxSizing: 'border-box' }}>
-          <Typography
-            variant="h5"
-            sx={{
-              mb: 3,
-              fontWeight: '700',
-              fontSize: { xs: '1.5rem', md: '2rem' },
-              color: '#088178',
-
-              textAlign: 'center',
-            }}
-          >
+        <Box sx={{ mt: { xs: 6, md: 10 } }}>
+          <Typography variant="h5" sx={{ mb: 3, fontWeight: '700', color: '#088178', textAlign: 'center' }}>
             Similar Products
           </Typography>
 
           <Grid container spacing={2} justifyContent={'center'}>
             {similarProducts.map((item) => (
-              <Grid item xs={6} sm={6} md={3} key={item.id} >
+              <Grid item xs={6} sm={6} md={3} key={item.id}>
                 <Box
                   component={Link}
                   to={`/product/${item.id}`}
@@ -237,13 +147,11 @@ const ProductDetail = ({ onAddToCart, wishlistItems, onToggleWishlist }) => {
                     bgcolor: 'white',
                     borderRadius: 3,
                     boxShadow: 2,
-                    mr:18,
                     p: 1.5,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
                     transition: 'all 0.3s ease-in-out',
-                    boxSizing: 'border-box',
                     '&:hover': {
                       boxShadow: 5,
                       transform: 'scale(1.05)',
@@ -263,16 +171,10 @@ const ProductDetail = ({ onAddToCart, wishlistItems, onToggleWishlist }) => {
                       boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                     }}
                   />
-                  <Typography
-                    variant="subtitle1"
-                    sx={{ fontWeight: '700', textAlign: 'center' }}
-                  >
+                  <Typography variant="subtitle1" sx={{ fontWeight: '700', textAlign: 'center' }}>
                     {item.name}
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ color: 'gray', mt: 1, fontWeight: '600' }}
-                  >
+                  <Typography variant="body2" sx={{ color: 'gray', mt: 1, fontWeight: '600' }}>
                     ₹{item.price}
                   </Typography>
                 </Box>
