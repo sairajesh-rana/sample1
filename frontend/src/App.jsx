@@ -17,6 +17,7 @@ import CombinedAccountFlow from "./components/Form/Contact";
 import Banners from "./components/Poster/Banner";
 import OffBanner1 from "./components/Poster/Poster";
 import ProductDetail from "./components/Products/ProductDetail"; 
+import ProfileView from "./components/Form/Account";
 
 const AppContent = () => {
   const location = useLocation();
@@ -142,6 +143,18 @@ const AppContent = () => {
             />
           }
         />
+
+        {/* Profile */}
+        <Route
+          path="/profile"
+          element={
+            <ProfileView
+              cartCount={cartItems.length}
+              wishlistCount={wishlistItems.length}
+            />
+          }
+        />
+
         {/* Contact */}
         <Route path="/contact" element={<CombinedAccountFlow />} />
       </Routes>
