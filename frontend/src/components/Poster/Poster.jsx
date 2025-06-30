@@ -1,8 +1,6 @@
 import React from 'react';
 import { Button } from '@mui/material';
-
 const bannerImage = '/images/banner/b2.jpg';
-
 const OffBanner1 = () => {
   const sectionStyle = {
     backgroundImage: `url(${bannerImage})`,
@@ -65,5 +63,4 @@ const OffBanner1 = () => {
     </section>
   );
 };
-
 export default OffBanner1;

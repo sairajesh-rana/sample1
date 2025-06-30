@@ -186,5 +186,4 @@ const ProductDetail = ({ onAddToCart, wishlistItems, onToggleWishlist }) => {
     </Box>
   );
 };
-
 export default ProductDetail;

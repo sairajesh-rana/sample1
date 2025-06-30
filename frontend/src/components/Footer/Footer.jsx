@@ -1,5 +1,4 @@
 import React from 'react';
-
 const appImg = '/images/pay/app.jpg';
 const playImg = '/images/pay/play.jpg';
 const payImg = '/images/pay/pay.png';
@@ -123,5 +122,4 @@ const Footer = () => {
     </footer>
   );
 };
-
 export default Footer;
