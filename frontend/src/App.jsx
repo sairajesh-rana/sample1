@@ -5,11 +5,12 @@ import {
   useLocation,
 } from "react-router-dom";
 import { useState } from "react";
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import Header from "./components/navrbar/navrbar";
 import WishlistPage from "./components/Products/WishlistPage";
 import ProductGrid from "./components/Products/ProductGrid";
-import HeroSection from "./components/banner1/section1";
+import Carousel from "./components/banner1/section1";
 import CartPage from "./components/Products/cartModel";
 import ShopCategories from "./components/Products/ShopCategories";
 import Footer from "./components/Footer/Footer";
@@ -86,7 +87,7 @@ const AppContent = () => {
           path="/"
           element={
             <>
-              <HeroSection />
+              <Carousel/>
               <ProductGrid
                 onAddToCart={handleAddToCart}
                 onToggleWishlist={handleToggleWishlist}

@@ -96,6 +96,14 @@ const productsData = [
 const ShopCategories = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedSizes, setSelectedSizes] = useState({});
+
+  const handleSizeClick = (productId, size) => {
+    setSelectedSizes((prev) => ({
+      ...prev,
+      [productId]: size,
+    }));
+  };
 
   const filteredProducts = productsData.filter(
     (product) =>
@@ -190,9 +198,20 @@ const ShopCategories = () => {
               </Typography>
               <Stack direction="row" spacing={1} sx={{ mb: 1 }}>
                 {product.sizes.map((size) => (
-                  <Chip key={size} label={size} size="small" variant="outlined" />
+                  <Chip
+                    key={size}
+                    label={size}
+                    size="small"
+                    variant={selectedSizes[product.id] === size ? "filled" : "outlined"}
+                    color={selectedSizes[product.id] === size ? "primary" : "default"}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleSizeClick(product.id, size);
+                    }}
+                  />
                 ))}
               </Stack>
+
               <Stack direction="row" spacing={1}>
                 {product.colors.map((color) => (
                   <Chip key={color} label={color} size="small" />
