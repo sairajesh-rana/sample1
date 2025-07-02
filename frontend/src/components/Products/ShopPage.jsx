@@ -104,10 +104,16 @@ const productsData = [
   },
 ];
 
-export const ShopCategories = ({ onAddToCart, wishlistItems, onToggleWishlist }) => {
+const Shoppage = ({ onAddToCart, wishlistItems = [], onToggleWishlist }) => {
+  const { id } = useParams();
   const navigate = useNavigate();
+
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSizes, setSelectedSizes] = useState({});
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [id]);
 
   const handleSizeClick = (productId, size) => {
     setSelectedSizes((prev) => ({ ...prev, [productId]: size }));
@@ -128,6 +134,163 @@ export const ShopCategories = ({ onAddToCart, wishlistItems, onToggleWishlist })
     }
   };
 
+  const product = id ? productsData.find((p) => p.id === parseInt(id)) : null;
+
+  if (id && !product) {
+    return (
+      <Box sx={{ p: 4, textAlign: 'center' }}>
+        <Typography variant="h4" gutterBottom>Product Not Found</Typography>
+        <Button variant="contained" onClick={() => navigate('/shop')}>Back to Shop</Button>
+      </Box>
+    );
+  }
+
+  if (product) {
+    const isWishlisted = wishlistItems.some((item) => item.id === product.id);
+    const similarProducts = productsData.filter((p) => p.id !== product.id);
+
+    return (
+      <Box sx={{ width: '100%', minHeight: '100vh', bgcolor: '#f5f5f5', px: { xs: 1, sm: 4, md: 8 }, py: { xs: 3, md: 6 } }}>
+        <IconButton onClick={() => navigate(-1)} sx={{ mb: { xs: 2, md: 4 }, color: '#088178' }}>
+          <ArrowBackIcon fontSize="inherit" />
+        </IconButton>
+
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            gap: { xs: 3, md: 6 },
+            bgcolor: 'white',
+            borderRadius: 3,
+            boxShadow: 3,
+            p: { xs: 2, sm: 4, md: 6 },
+            alignItems: 'center',
+          }}
+        >
+          <Box
+            component="img"
+            src={product.image}
+            alt={product.name}
+            sx={{
+              width: { xs: '100%', md: '50%' },
+              maxHeight: { xs: 300, md: 400 },
+              borderRadius: 3,
+              objectFit: 'cover',
+              boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+            }}
+          />
+
+          <Box sx={{ flex: 1 }}>
+            <Typography variant="h4" sx={{ mb: 2, fontWeight: '700', color: '#088178' }}>
+              {product.name}
+            </Typography>
+            <Typography sx={{ mb: 1, color: 'text.secondary' }}>
+              Brand: <strong>{product.brand}</strong>
+            </Typography>
+            <Box sx={{ mb: 1 }}>
+              {Array(product.rating).fill().map((_, i) => (
+                <i key={i} className="fa-solid fa-star" style={{ color: '#e6ae2c', marginRight: 4 }} />
+              ))}
+            </Box>
+            <Typography variant="h5" sx={{ mb: 3, color: '#088178', fontWeight: '700' }}>
+              ₹{product.price}
+            </Typography>
+            <Typography sx={{ mb: 4, lineHeight: 1.6, color: 'text.primary' }}>
+              {product.description}
+            </Typography>
+
+            <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+              <Button
+                variant="contained"
+                sx={{ bgcolor: '#088178', color: 'white', px: 3, py: 1.5, fontWeight: '600', '&:hover': { bgcolor: '#0b9a8a' } }}
+                onClick={() => onAddToCart(product)}
+              >
+                <i className="fa-solid fa-cart-shopping" style={{ marginRight: 8 }} />
+                Add to Cart
+              </Button>
+
+              <Button
+                variant="outlined"
+                sx={{
+                  color: isWishlisted ? '#e63946' : '#088178',
+                  borderColor: '#088178',
+                  px: 3,
+                  py: 1.5,
+                  fontWeight: '600',
+                  '&:hover': {
+                    bgcolor: '#e6f2f1',
+                    borderColor: '#0b9a8a',
+                    color: isWishlisted ? '#b92d3e' : '#0b9a8a',
+                  },
+                }}
+                onClick={() => onToggleWishlist(product)}
+              >
+                <i className={`fa${isWishlisted ? 's' : 'r'} fa-heart`} style={{ marginRight: 8 }} />
+                {isWishlisted ? 'Wishlisted' : 'Add to Wishlist'}
+              </Button>
+            </Box>
+          </Box>
+        </Box>
+
+        {similarProducts.length > 0 && (
+          <Box sx={{ mt: { xs: 6, md: 10 } }}>
+            <Typography variant="h5" sx={{ mb: 3, fontWeight: '700', color: '#088178', textAlign: 'center' }}>
+              Similar Products
+            </Typography>
+
+            <Grid container spacing={2} justifyContent={'center'}>
+              {similarProducts.map((item) => (
+                <Grid item xs={6} sm={6} md={3} key={item.id}>
+                  <Box
+                    component={Link}
+                    to={`/product/${item.id}`}
+                    sx={{
+                      width: '100%',
+                      textDecoration: 'none',
+                      color: 'inherit',
+                      bgcolor: 'white',
+                      borderRadius: 3,
+                      boxShadow: 2,
+                      p: 1.5,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      transition: 'all 0.3s ease-in-out',
+                      '&:hover': {
+                        boxShadow: 5,
+                        transform: 'scale(1.05)',
+                      },
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src={item.image}
+                      alt={item.name}
+                      sx={{
+                        width: '100%',
+                        height: 160,
+                        objectFit: 'cover',
+                        borderRadius: 2,
+                        mb: 1.5,
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                      }}
+                    />
+                    <Typography variant="subtitle1" sx={{ fontWeight: '700', textAlign: 'center' }}>
+                      {item.name}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'gray', mt: 1, fontWeight: '600' }}>
+                      ₹{item.price}
+                    </Typography>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        )}
+      </Box>
+    );
+  }
+
   const filteredProducts = productsData.filter(
     (product) =>
       product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -136,24 +299,19 @@ export const ShopCategories = ({ onAddToCart, wishlistItems, onToggleWishlist })
 
   return (
     <Box sx={{ p: { xs: 6, sm: 8, md: 10 } }}>
-      <Box sx={{ mb: 2 }}>
-        <TextField
-          fullWidth
-          variant="outlined"
-          placeholder="Search products by name or brand..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </Box>
+      <TextField
+        fullWidth
+        variant="outlined"
+        placeholder="Search products by name or brand..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        sx={{ mb: 2 }}
+      />
 
       <Box
         sx={{
           display: 'grid',
-          gridTemplateColumns: {
-            xs: 'repeat(1, 1fr)',
-            sm: 'repeat(2, 1fr)',
-            md: 'repeat(4, 1fr)',
-          },
+          gridTemplateColumns: { xs: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' },
           gap: 3,
         }}
       >
@@ -175,12 +333,7 @@ export const ShopCategories = ({ onAddToCart, wishlistItems, onToggleWishlist })
                 },
               }}
               onClick={() => navigate(`/product/${product.id}`)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && navigate(`/product/${product.id}`)}
-              aria-label={`View ${product.name} details`}
             >
-              {/* Share icon top-right */}
               <IconButton
                 onClick={(e) => {
                   e.stopPropagation();
@@ -251,168 +404,4 @@ export const ShopCategories = ({ onAddToCart, wishlistItems, onToggleWishlist })
   );
 };
 
-export const ProductDetail = ({ onAddToCart, wishlistItems, onToggleWishlist }) => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [id]);
-
-  const product = productsData.find((p) => p.id === parseInt(id));
-  if (!product) {
-    return (
-      <Box sx={{ p: 4, textAlign: 'center' }}>
-        <Typography variant="h4" gutterBottom>Product Not Found</Typography>
-        <Button variant="contained" onClick={() => navigate('/shop')}>Back to Shop</Button>
-      </Box>
-    );
-  }
-
-  const isWishlisted = wishlistItems?.some((item) => item.id === product.id);
-  const similarProducts = productsData.filter((p) => p.id !== product.id);
-
-  return (
-    <Box sx={{ width: '100%', minHeight: '100vh', bgcolor: '#f5f5f5', px: { xs: 1, sm: 4, md: 8 }, py: { xs: 3, md: 6 } }}>
-      <IconButton onClick={() => navigate(-1)} sx={{ mb: { xs: 2, md: 4 }, color: '#088178' }}>
-        <ArrowBackIcon fontSize="inherit" />
-      </IconButton>
-
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' },
-          gap: { xs: 3, md: 6 },
-          bgcolor: 'white',
-          borderRadius: 3,
-          boxShadow: 3,
-          p: { xs: 2, sm: 4, md: 6 },
-          alignItems: 'center',
-        }}
-      >
-        <Box
-          component="img"
-          src={product.image}
-          alt={product.name}
-          sx={{
-            width: { xs: '100%', md: '50%' },
-            maxHeight: { xs: 300, md: 400 },
-            borderRadius: 3,
-            objectFit: 'cover',
-            boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-          }}
-        />
-
-        <Box sx={{ flex: 1 }}>
-          <Typography variant="h4" sx={{ mb: 2, fontWeight: '700', color: '#088178' }}>
-            {product.name}
-          </Typography>
-          <Typography sx={{ mb: 1, color: 'text.secondary' }}>
-            Brand: <strong>{product.brand}</strong>
-          </Typography>
-          <Box sx={{ mb: 1 }}>
-            {Array(product.rating)
-              .fill()
-              .map((_, i) => (
-                <i key={i} className="fa-solid fa-star" style={{ color: '#e6ae2c', marginRight: 4 }} />
-              ))}
-          </Box>
-          <Typography variant="h5" sx={{ mb: 3, color: '#088178', fontWeight: '700' }}>
-            ₹{product.price}
-          </Typography>
-          <Typography sx={{ mb: 4, lineHeight: 1.6, color: 'text.primary' }}>
-            {product.description}
-          </Typography>
-
-          <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-            <Button
-              variant="contained"
-              sx={{ bgcolor: '#088178', color: 'white', px: 3, py: 1.5, fontWeight: '600', '&:hover': { bgcolor: '#0b9a8a' } }}
-              onClick={() => onAddToCart(product)}
-            >
-              <i className="fa-solid fa-cart-shopping" style={{ marginRight: 8 }} />
-              Add to Cart
-            </Button>
-
-            <Button
-              variant="outlined"
-              sx={{
-                color: isWishlisted ? '#e63946' : '#088178',
-                borderColor: '#088178',
-                px: 3,
-                py: 1.5,
-                fontWeight: '600',
-                '&:hover': {
-                  bgcolor: '#e6f2f1',
-                  borderColor: '#0b9a8a',
-                  color: isWishlisted ? '#b92d3e' : '#0b9a8a',
-                },
-              }}
-              onClick={() => onToggleWishlist(product)}
-            >
-              <i className={`fa${isWishlisted ? 's' : 'r'} fa-heart`} style={{ marginRight: 8 }} />
-              {isWishlisted ? 'Wishlisted' : 'Add to Wishlist'}
-            </Button>
-          </Box>
-        </Box>
-      </Box>
-
-      {/* Similar Products */}
-      {similarProducts.length > 0 && (
-        <Box sx={{ mt: { xs: 6, md: 10 } }}>
-          <Typography variant="h5" sx={{ mb: 3, fontWeight: '700', color: '#088178', textAlign: 'center' }}>
-            Similar Products
-          </Typography>
-
-          <Grid container spacing={2} justifyContent={'center'}>
-            {similarProducts.map((item) => (
-              <Grid item xs={6} sm={6} md={3} key={item.id}>
-                <Box
-                  component={Link}
-                  to={`/product/${item.id}`}
-                  sx={{
-                    width: '100%',
-                    textDecoration: 'none',
-                    color: 'inherit',
-                    bgcolor: 'white',
-                    borderRadius: 3,
-                    boxShadow: 2,
-                    p: 1.5,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    transition: 'all 0.3s ease-in-out',
-                    '&:hover': {
-                      boxShadow: 5,
-                      transform: 'scale(1.05)',
-                    },
-                  }}
-                >
-                  <Box
-                    component="img"
-                    src={item.image}
-                    alt={item.name}
-                    sx={{
-                      width: '100%',
-                      height: 160,
-                      objectFit: 'cover',
-                      borderRadius: 2,
-                      mb: 1.5,
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                    }}
-                  />
-                  <Typography variant="subtitle1" sx={{ fontWeight: '700', textAlign: 'center' }}>
-                    {item.name}
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: 'gray', mt: 1, fontWeight: '600' }}>
-                    ₹{item.price}
-                  </Typography>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-      )}
-    </Box>
-  );
-};
+export default Shoppage;

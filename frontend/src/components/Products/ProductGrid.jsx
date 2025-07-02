@@ -4,7 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
 
 const productsData = [
-  { id: 1, image: '/images/products/f1.jpg', brand: 'Adidas', name: 'Astronaut Tee', price: 559, rating: 5 },
+  { id: 1, image: '/images/products/f1.webp', brand: 'Adidas', name: 'Astronaut Tee', price: 559, rating: 5 },
   { id: 2, image: '/images/products/f2.jpg', brand: 'Nike', name: 'Explorer Tee', price: 699, rating: 4 },
   { id: 3, image: '/images/products/f3.jpg', brand: 'Puma', name: 'Galaxy Shirt', price: 399, rating: 4 },
   { id: 4, image: '/images/products/f4.jpg', brand: 'Reebok', name: 'Comet Hoodie', price: 599, rating: 5 },
