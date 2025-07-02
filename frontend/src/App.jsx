@@ -1,32 +1,33 @@
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useLocation,
-} from "react-router-dom";
-import { useState } from "react";
+} from 'react-router-dom';
+
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-import Header from "./components/navrbar/navrbar";
-import WishlistPage from "./components/Products/WishlistPage";
-import ProductGrid from "./components/Products/ProductGrid";
-import Carousel from "./components/banner1/section1";
-import CartPage from "./components/Products/cartModel";
-import ShopCategories from "./components/Products/ShopCategories";
-import Footer from "./components/Footer/Footer";
-import CombinedAccountFlow from "./components/Form/Contact";
-import Banners from "./components/Poster/Banner";
-import OffBanner1 from "./components/Poster/Poster";
-import ProductDetail from "./components/Products/ProductDetail"; 
-import ProfileView from "./components/Form/Account";
+// Components
+import Header from './components/navrbar/navrbar';
+import WishlistPage from './components/Products/WishlistPage';
+import ProductGrid from './components/Products/ProductGrid';
+import Carousel from './components/banner1/section1';
+import CartPage from './components/Products/cartModel';
+import { ShopCategories,ProductDetail } from './components/Products/shoppage';
+import Footer from './components/Footer/Footer';
+import CombinedAccountFlow from './components/Form/Contact';
+import Banners from './components/Poster/Banner';
+import OffBanner1 from './components/Poster/Poster';
+import ProfileView from './components/Form/Account';
 
 const AppContent = () => {
   const location = useLocation();
 
   const [cartItems, setCartItems] = useState([]);
   const [wishlistItems, setWishlistItems] = useState([]);
-  
 
+  // 🛒 Add to cart
   const handleAddToCart = (product) => {
     setCartItems((prev) => {
       const existing = prev.find((item) => item.id === product.id);
@@ -42,10 +43,12 @@ const AppContent = () => {
     });
   };
 
+  // ❌ Remove from cart
   const handleRemoveFromCart = (productId) => {
     setCartItems((prev) => prev.filter((item) => item.id !== productId));
   };
 
+  // 🔁 Update quantity
   const handleChangeQuantity = (productId, delta) => {
     setCartItems((prev) =>
       prev
@@ -58,14 +61,13 @@ const AppContent = () => {
     );
   };
 
+  // ❤️ Wishlist toggle
   const handleToggleWishlist = (product) => {
     setWishlistItems((prev) => {
       const exists = prev.some((item) => item.id === product.id);
-      if (exists) {
-        return prev.filter((item) => item.id !== product.id);
-      } else {
-        return [...prev, product];
-      }
+      return exists
+        ? prev.filter((item) => item.id !== product.id)
+        : [...prev, product];
     });
   };
 
@@ -76,18 +78,20 @@ const AppContent = () => {
 
   return (
     <>
+      {/* Navbar */}
       <Header
         cartCount={totalCartCount}
         wishlistCount={wishlistItems.length}
       />
 
+      {/* Routing */}
       <Routes>
-        {/* Home */}
+        {/* 🏠 Home */}
         <Route
           path="/"
           element={
             <>
-              <Carousel/>
+              <Carousel />
               <ProductGrid
                 onAddToCart={handleAddToCart}
                 onToggleWishlist={handleToggleWishlist}
@@ -97,7 +101,7 @@ const AppContent = () => {
           }
         />
 
-        {/* Cart */}
+        {/* 🛒 Cart */}
         <Route
           path="/cart"
           element={
@@ -109,7 +113,7 @@ const AppContent = () => {
           }
         />
 
-        {/* Wishlist */}
+        {/* ❤️ Wishlist */}
         <Route
           path="/wishlist"
           element={
@@ -121,7 +125,7 @@ const AppContent = () => {
           }
         />
 
-        {/* Shop */}
+        {/* 🛍 Shop */}
         <Route
           path="/shop"
           element={
@@ -133,19 +137,19 @@ const AppContent = () => {
           }
         />
 
-        {/* Product Detail (NEW) */}
+        {/* 🔍 Product Detail */}
         <Route
           path="/product/:id"
           element={
             <ProductDetail
               onAddToCart={handleAddToCart}
-              wishlistItems={wishlistItems}
               onToggleWishlist={handleToggleWishlist}
+              wishlistItems={wishlistItems}
             />
           }
         />
 
-        {/* Profile */}
+        {/* 👤 Profile */}
         <Route
           path="/profile"
           element={
@@ -156,11 +160,12 @@ const AppContent = () => {
           }
         />
 
-        {/* Contact */}
+        {/* 📞 Contact */}
         <Route path="/contact" element={<CombinedAccountFlow />} />
       </Routes>
 
-      {location.pathname === "/" && (
+      {/* 🎯 Show banners and footer only on Home Page */}
+      {location.pathname === '/' && (
         <>
           <OffBanner1 />
           <Banners />
@@ -171,6 +176,7 @@ const AppContent = () => {
   );
 };
 
+// 🔁 Wrap in Router
 const App = () => (
   <Router>
     <AppContent />

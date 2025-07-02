@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
 import { Box, Typography, Button, Container } from '@mui/material';
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
@@ -11,7 +10,7 @@ const Carousel = () => {
   useEffect(() => {
     if (carouselRef.current) {
       new bootstrap.Carousel(carouselRef.current, {
-        interval: 7000, 
+        interval: 7000,
         ride: 'carousel',
         touch: true,
         pause: false,
@@ -20,11 +19,11 @@ const Carousel = () => {
     }
   }, []);
 
-  const imageStyle = {
-     height: {
+  const imageSx = {
+    height: {
       xs: '250px',
       sm: '350px',
-      md: '300px',
+      md: '550px',
     },
     objectFit: 'cover',
     width: '100%',
@@ -39,8 +38,53 @@ const Carousel = () => {
     background: 'linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.1))',
     display: 'flex',
     alignItems: 'center',
+    zIndex: 2,
     color: '#fff',
+    px: {
+      xs: 2,
+      sm: 4,
+      md: 6,
+    },
   };
+
+  const headingStyle = {
+    fontWeight: 'bold',
+    fontSize: {
+      xs: '1.6rem',
+      sm: '2.2rem',
+      md: '3rem',
+    },
+  };
+
+  const subheadingStyle = {
+    mt: 1,
+    fontSize: {
+      xs: '0.9rem',
+      sm: '1.1rem',
+      md: '1.25rem',
+    },
+  };
+
+  const buttonSx = (bgColor) => ({
+    mt: 2,
+    bgcolor: bgColor,
+    fontSize: {
+      xs: '0.75rem',
+      sm: '0.875rem',
+    },
+    px: {
+      xs: 2,
+      sm: 3,
+    },
+    py: {
+      xs: 1,
+      sm: 1.5,
+    },
+    '&:hover': {
+      backgroundColor: bgColor,
+      opacity: 0.9,
+    },
+  });
 
   return (
     <div
@@ -52,36 +96,36 @@ const Carousel = () => {
 
         {/* Slide 1 */}
         <div className="carousel-item active position-relative">
-          <img src="/images/b70.jpg" style={imageStyle} alt="Slide 1" />
+          <Box component="img" src="/images/b70.jpg" alt="Slide 1" sx={imageSx} />
           <Box sx={overlayStyle}>
             <Container>
-              <Typography variant="h3" sx={{ fontWeight: 'bold' }}>Super Deals</Typography>
-              <Typography variant="h6" sx={{ mt: 1 }}>On Latest Collections</Typography>
-              <Button variant="contained" sx={{ mt: 2, bgcolor: '#1976d2' }}>Shop Now</Button>
+              <Typography sx={headingStyle}>Super Deals</Typography>
+              <Typography sx={subheadingStyle}>On Latest Collections</Typography>
+              <Button variant="contained" sx={buttonSx('#1976d2')}>Shop Now</Button>
             </Container>
           </Box>
         </div>
 
         {/* Slide 2 */}
         <div className="carousel-item position-relative">
-          <img src="/images/b45.jpg" style={imageStyle} alt="Slide 2" />
+          <Box component="img" src="/images/b45.jpg" alt="Slide 2" sx={imageSx} />
           <Box sx={overlayStyle}>
             <Container>
-              <Typography variant="h3" sx={{ fontWeight: 'bold' }}>Up to 70% Off</Typography>
-              <Typography variant="h6" sx={{ mt: 1 }}>Exclusive Summer Sale</Typography>
-              <Button variant="contained" sx={{ mt: 2, bgcolor: '#d32f2f' }}>Shop Now</Button>
+              <Typography sx={headingStyle}>Up to 70% Off</Typography>
+              <Typography sx={subheadingStyle}>Exclusive Summer Sale</Typography>
+              <Button variant="contained" sx={buttonSx('#d32f2f')}>Shop Now</Button>
             </Container>
           </Box>
         </div>
 
         {/* Slide 3 */}
         <div className="carousel-item position-relative">
-          <img src="/images/b50.jpg" style={imageStyle} alt="Slide 3" />
+          <Box component="img" src="/images/b50.jpg" alt="Slide 3" sx={imageSx} />
           <Box sx={overlayStyle}>
             <Container>
-              <Typography variant="h3" sx={{ fontWeight: 'bold' }}>New Arrivals</Typography>
-              <Typography variant="h6" sx={{ mt: 1 }}>Trendy & Stylish</Typography>
-              <Button variant="contained" sx={{ mt: 2, bgcolor: '#388e3c' }}>Shop Now</Button>
+              <Typography sx={headingStyle}>New Arrivals</Typography>
+              <Typography sx={subheadingStyle}>Trendy & Stylish</Typography>
+              <Button variant="contained" sx={buttonSx('#388e3c')}>Shop Now</Button>
             </Container>
           </Box>
         </div>
