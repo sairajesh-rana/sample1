@@ -11,7 +11,7 @@ import WishlistPage from './components/Products/WishlistPage';
 import ProductGrid from './components/Products/ProductGrid';
 import Carousel from './components/banner1/section1';
 import CartPage from './components/Products/cartModel';
-import { ShopCategories,ProductDetail } from './components/Products/shoppage.jsx';
+import { ProductDetail,ShopCategories } from './components/Products/Shoppage';
 import Footer from './components/Footer/Footer';
 import CombinedAccountFlow from './components/Form/Contact';
 import Banners from './components/Poster/Banner';
