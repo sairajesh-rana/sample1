@@ -38,7 +38,7 @@ const ProductGrid = ({ onAddToCart, onToggleWishlist, wishlistItems }) => {
   const isWishlisted = (productId) => wishlistItems.some((item) => item.id === productId);
 
   return (
-    <div className="container mt-5 pt-3">
+    <div className="container mt-6 pt-3">
       <div className="row justify-content-center">
         {productsData.slice(0, visibleCount).map((product) => {
           const isHovered = hoveredProductId === product.id;
@@ -74,8 +74,6 @@ const ProductGrid = ({ onAddToCart, onToggleWishlist, wishlistItems }) => {
                     cursor: 'pointer',
                   }}
                 />
-
-                {/* Wishlist and Share buttons */}
                 <div
                   style={{
                     position: 'absolute',
